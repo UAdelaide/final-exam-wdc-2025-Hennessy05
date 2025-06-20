@@ -17,6 +17,9 @@ CREATE TABLE Dogs (
     size ENUM('small', 'medium', 'large') NOT NULL,
     FOREIGN KEY (owner_id) REFERENCES Users(user_id)
 );
+-- this prevents duplicate 
+ALTER TABLE Dogs
+ADD CONSTRAINT unique_dog_owner UNIQUE (name, owner_id);
 
 CREATE TABLE WalkRequests (
     request_id INT AUTO_INCREMENT PRIMARY KEY,
