@@ -97,6 +97,18 @@ router.get('/walks/mine', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch dogs' });
   }
 });
+// GET all dogs (used on homepage)
+router.get('/dogs', async (req, res) => {
+  const db = require('../models/db');
+
+  try {
+    const [rows] = await db.query('SELECT * FROM Dogs');
+    res.json(rows);
+  } catch (error) {
+    console.error('Failed to fetch dogs:', error);
+    res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
+});
 
 
 
