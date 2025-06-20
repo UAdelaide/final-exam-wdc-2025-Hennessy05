@@ -44,10 +44,10 @@
       body: JSON.stringify(form.value)
     });
 
-    const text = await res.text();        // ← Get raw response
-    console.log('Raw response:', text);   // ← Debug log
+    const text = await res.text();
+    console.log('Raw response:', text);
 
-    const data = JSON.parse(text);        // ← Try to parse JSON
+    const data = JSON.parse(text);       
     if (!res.ok) throw new Error(data.error || 'Login failed');
 
     if (data.user.role === 'owner') {
