@@ -41,7 +41,8 @@ router.get('/me', (req, res) => {
 
 // POST login (completed version)
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+    const email = xss(req.body.email);
+    const password = xss(req.body.password);
 
   try {
     const [rows] = await db.query(`
