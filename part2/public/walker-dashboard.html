@@ -58,24 +58,29 @@
           }
         }
 
-        async function applyToWalk(requestId) {
-          try {
-            const res = await fetch(`/api/walks/${requestId}/apply`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ walker_id: user })
-            });
-            const result = await res.json();
+              async function applyToWalk(requestId) {
+        try {
+          const walker_id = await getCurrentUser();
+          if (!walker_id) return;
 
-            if (!res.ok) throw new Error(result.error || 'Application failed');
-            message.value = result.message;
-            error.value = '';
-            await loadWalkRequests();
-          } catch (err) {
-            error.value = err.message;
-            message.value = '';
-          }
+          const res = await fetch(`/api/walks/${requestId}/apply`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ walker_id })
+          });
+
+          const result = await res.json();
+
+          if (!res.ok) throw new Error(result.error || 'Application failed');
+          message.value = result.message;
+          error.value = '';
+          await loadWalkRequests();
+        } catch (err) {
+          error.value = err.message;
+          message.value = '';
         }
+      }
+
         async function logout() {
           await fetch('/api/users/logout', { method: 'POST' });
           window.location.href = 'index.html';
