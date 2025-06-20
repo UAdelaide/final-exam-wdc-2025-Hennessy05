@@ -73,7 +73,7 @@ router.post('/login', async (req, res) => {
         res.clearCookie('connect.sid'); // default session cookie name
         res.json({ message: 'Logged out' });
       });
-    });}
+    });}}
 
 // POST /api/users/logout
 router.post('/logout', (req, res) => {
