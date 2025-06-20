@@ -64,21 +64,13 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// logout - ends session and returns success
-    router.post('/logout', (req, res) => {
-      req.session.destroy(err => {
-        if (err) {
-          return res.status(500).json({ error: 'Failed to log out' });
-        }
-        res.clearCookie('connect.sid'); // default session cookie name
-        res.json({ message: 'Logged out' });
-      });
-    });
-
-// POST /api/users/logout
+// ✅ POST /api/users/logout - ends session and returns success
 router.post('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.clearCookie('connect.sid'); // default cookie name
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to log out' });
+    }
+    res.clearCookie('connect.sid'); // default session cookie name
     res.json({ message: 'Logged out' });
   });
 });
