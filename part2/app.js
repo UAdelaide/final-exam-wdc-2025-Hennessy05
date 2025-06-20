@@ -6,7 +6,6 @@ const session = require('express-session');
 
 const app = express();
 
-// ✅ Middleware — set up sessions BEFORE routes!
 app.use(session({
   secret: 'notyoursecret',
   resave: false,
