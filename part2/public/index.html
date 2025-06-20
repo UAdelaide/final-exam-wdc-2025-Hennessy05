@@ -23,6 +23,27 @@
       </div>
       <button type="submit" class="btn btn-primary w-100">Log In</button>
     </form>
+    <h2 class="mt-5">All Registered Dogs</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Dog ID</th>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Owner ID</th>
+      <th>Photo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="dog in dogs" :key="dog.dog_id">
+      <td>{{ dog.dog_id }}</td>
+      <td>{{ dog.name }}</td>
+      <td>{{ dog.size }}</td>
+      <td>{{ dog.owner_id }}</td>
+      <td><img :src="dog.photo" alt="Dog photo" width="80"></td>
+    </tr>
+  </tbody>
+</table>
 
     <div v-if="error" class="alert alert-danger mt-3">{{ error }}</div>
   </div>
@@ -58,7 +79,7 @@
       throw new Error('Unknown user role');
     }
   } catch (err) {
-    console.error('Login error:', err); 
+    console.error('Login error:', err);
     error.value = err.message;
   }
 }
