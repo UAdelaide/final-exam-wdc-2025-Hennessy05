@@ -93,6 +93,8 @@
                 if (!res.ok) throw new Error('Not logged in');
                 const user = await res.json();
                 return user.user_id;
+                console.log("User applying:", currentUser);
+
         }  catch (err) {
          error.value = 'Failed to get user info';
          return null;
