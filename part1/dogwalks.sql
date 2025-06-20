@@ -17,7 +17,7 @@ CREATE TABLE Dogs (
     size ENUM('small', 'medium', 'large') NOT NULL,
     FOREIGN KEY (owner_id) REFERENCES Users(user_id)
 );
--- this prevents duplicate 
+-- this prevents duplicate dogs
 ALTER TABLE Dogs
 ADD CONSTRAINT unique_dog_owner UNIQUE (name, owner_id);
 
