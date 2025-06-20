@@ -87,7 +87,7 @@
         }
     async function loadDogs() {
         try {
-          const res = await fetch('/api/dogs');
+          const res = await fetch('/api/users/dogs');
           const dogList = await res.json();
 
           // For each dog, fetch a random photo
