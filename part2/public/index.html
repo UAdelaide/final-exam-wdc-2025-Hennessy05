@@ -58,7 +58,7 @@
       throw new Error('Unknown user role');
     }
   } catch (err) {
-    console.error('Login error:', err);   // ← Extra error log
+    console.error('Login error:', err);   // Extra error log
     error.value = err.message;
   }
 }
