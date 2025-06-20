@@ -6,22 +6,21 @@ const session = require('express-session');
 
 const app = express();
 
-// Middleware
-app.use(express.json());
-app.use(express.static(path.join(__dirname, '/public')));
-
-// Routes
-const walkRoutes = require('./routes/walkRoutes');
-const userRoutes = require('./routes/userRoutes');
-
-app.use('/api/walks', walkRoutes);
-app.use('/api/users', userRoutes);
-
+// ✅ Middleware — set up sessions BEFORE routes!
 app.use(session({
   secret: 'notyoursecret',
   resave: false,
   saveUninitialized: false
 }));
 
-// Export the app instead of listening here
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '/public')));
+
+// ✅ Routes
+const walkRoutes = require('./routes/walkRoutes');
+const userRoutes = require('./routes/userRoutes');
+
+app.use('/api/walks', walkRoutes);
+app.use('/api/users', userRoutes);
+
 module.exports = app;
