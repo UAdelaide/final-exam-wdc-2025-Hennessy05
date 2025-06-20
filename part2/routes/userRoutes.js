@@ -56,10 +56,7 @@ router.post('/login', async (req, res) => {
 
     req.session.user = rows[0];
 
-  }
-});
-
- res.json({ message: 'Login successful', user: rows[0] });
+    res.json({ message: 'Login successful', user: rows[0] });
   } catch (error) {
     console.error('Login failed:', error);
     res.status(500).json({ error: 'Login failed' });
@@ -73,7 +70,10 @@ router.post('/login', async (req, res) => {
         res.clearCookie('connect.sid'); // default session cookie name
         res.json({ message: 'Logged out' });
       });
-    });}}
+    });
+
+  }
+});
 
 // POST /api/users/logout
 router.post('/logout', (req, res) => {
