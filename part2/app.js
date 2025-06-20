@@ -4,11 +4,7 @@ require('dotenv').config();
 
 const session = require('express-session');
 
-app.use(session({
-  secret: 'notyoursecret', // You can use a stronger secret in production
-  resave: false,
-  saveUninitialized: false
-}));
+
 
 const app = express();
 
@@ -22,6 +18,10 @@ const userRoutes = require('./routes/userRoutes');
 
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
-
+app.use(session({
+  secret: 'notyoursecret',
+  resave: false,
+  saveUninitialized: false
+}));
 // Export the app instead of listening here
 module.exports = app;
