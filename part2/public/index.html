@@ -47,7 +47,7 @@
     const text = await res.text();
     console.log('Raw response:', text);
 
-    const data = JSON.parse(text);       
+    const data = JSON.parse(text);
     if (!res.ok) throw new Error(data.error || 'Login failed');
 
     if (data.user.role === 'owner') {
@@ -58,7 +58,7 @@
       throw new Error('Unknown user role');
     }
   } catch (err) {
-    console.error('Login error:', err);   // Extra error log
+    console.error('Login error:', err); 
     error.value = err.message;
   }
 }
