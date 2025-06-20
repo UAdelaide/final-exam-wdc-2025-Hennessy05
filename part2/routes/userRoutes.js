@@ -15,10 +15,10 @@ router.get('/', async (req, res) => {
 
 // POST a new user (simple signup)
 router.post('/register', async (req, res) => {
-const username = xss(req.body.username);
-const email = xss(req.body.email);
-const password = xss(req.body.password);
-const role = xss(req.body.role);
+    const username = xss(req.body.username);
+    const email = xss(req.body.email);
+    const password = xss(req.body.password);
+    const role = xss(req.body.role);
 
   try {
     const [result] = await db.query(`
