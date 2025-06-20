@@ -16,7 +16,6 @@ let db;
 
 (async () => {
   try {
-    // Connect to existing database
     db = await mysql.createConnection({
       host: '127.0.0.1',
       user: 'root',
@@ -24,7 +23,6 @@ let db;
       database: 'DogWalkService'
     });
 
-    // Insert sample data for testing
     await db.execute(`
       INSERT IGNORE INTO Users (username, email, password_hash, role) VALUES
       ('alice123', 'alice@example.com', 'hashed123', 'owner'),
@@ -52,7 +50,6 @@ let db;
       ((SELECT dog_id FROM Dogs WHERE name = 'Daisy'), '2025-06-13 14:00:00', 40, 'Riverside Park', 'open')
     `);
 
-    console.log('✔️ Sample data inserted');
   } catch (err) {
     console.error('❌ Error connecting to database or inserting data:', err);
   }
