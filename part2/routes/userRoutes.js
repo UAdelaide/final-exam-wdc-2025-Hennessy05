@@ -104,7 +104,6 @@ router.get('/walks/mine', async (req, res) => {
 });
 // GET all dogs (used on homepage)
 router.get('/dogs', async (req, res) => {
-  const db = require('../models/db');
 
   try {
     const [rows] = await db.query('SELECT * FROM Dogs');
