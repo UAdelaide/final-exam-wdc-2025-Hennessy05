@@ -78,7 +78,7 @@ router.post('/logout', (req, res) => {
   });
 });
 
-// GET the current logged-in owner's dogs
+// GET sources current logged-in owner's dogs
 router.get('/walks/mine', async (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
