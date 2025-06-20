@@ -80,14 +80,19 @@
           await fetch('/api/users/logout', { method: 'POST' });
           window.location.href = 'index.html';
         }
-        
+
         async function getCurrentUser() {
              try {
                 const res = await fetch('/api/users/me');
                 if (!res.ok) throw new Error('Not logged in');
                 const user = await res.json();
                 return user.user_id;
+        }  catch (err) {
+         error.value = 'Failed to get user info';
+         return null;
+           }
         }
+
 
         onMounted(() => {
           loadWalkRequests();
