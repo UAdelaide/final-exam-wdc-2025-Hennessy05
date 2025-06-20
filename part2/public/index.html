@@ -44,8 +44,14 @@
               body: JSON.stringify(form.value)
             });
 
-            const data = await res.json();
+            let data;
+            try {
+              data = await res.json();
+            } catch {
+              throw new Error('Server returned invalid response');
+            }
             if (!res.ok) throw new Error(data.error || 'Login failed');
+
 
             if (data.user.role === 'owner') {
               window.location.href = 'owner-dashboard.html';
