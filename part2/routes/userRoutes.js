@@ -36,7 +36,6 @@ router.get('/me', (req, res) => {
 });
 
 // POST login (completed version)
-// POST login (with error logging)
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -54,7 +53,7 @@ router.post('/login', async (req, res) => {
 
     res.json({ message: 'Login successful', user: rows[0] });
   } catch (error) {
-    console.error('❌ Login failed:', error);  // ⬅️ This line shows the real issue
+    console.error('Login failed:', error);
     res.status(500).json({ error: 'Login failed' });
   }
 });
