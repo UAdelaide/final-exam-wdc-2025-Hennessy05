@@ -36,6 +36,7 @@ router.get('/me', (req, res) => {
 });
 
 // POST login (completed version)
+// POST login (with error logging)
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -49,14 +50,15 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // this saves the user to an associated session
     req.session.user = rows[0];
 
     res.json({ message: 'Login successful', user: rows[0] });
   } catch (error) {
+    console.error('❌ Login failed:', error);  // ⬅️ This line shows the real issue
     res.status(500).json({ error: 'Login failed' });
   }
 });
+
 
 
 module.exports = router;
