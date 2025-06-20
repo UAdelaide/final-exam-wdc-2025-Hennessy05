@@ -2,6 +2,14 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 
+const session = require('express-session');
+
+app.use(session({
+  secret: 'dogwalksecret',   // You can use a stronger secret in production
+  resave: false,
+  saveUninitialized: false
+}));
+
 const app = express();
 
 // Middleware
