@@ -13,7 +13,7 @@
 <body>
   <div id="app">
     <h1>Dog of the Day</h1>
-    //error caused by validator not being Vue aware
+    <!-- error caused by validator not being Vue aware -->
     <img v-if="dogUrl" :src="dogUrl" :alt="`Image of ${dog.name}`" />
     <p>Today's random dog is named {{ dog.name }} and it's a {{ dog.breed }}</p>
   </div>
