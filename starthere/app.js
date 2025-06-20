@@ -34,7 +34,6 @@ let db;
       database: 'testdb'
     });
 
-    // Create a table if it doesn't exist
     await db.execute(`
       CREATE TABLE IF NOT EXISTS books (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,7 +42,6 @@ let db;
       )
     `);
 
-    // Insert data if table is empty
     const [rows] = await db.execute('SELECT COUNT(*) AS count FROM books');
     if (rows[0].count === 0) {
       await db.execute(`
