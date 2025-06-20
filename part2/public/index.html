@@ -40,8 +40,10 @@
       <td>{{ dog.name }}</td>
       <td>{{ dog.size }}</td>
       <td>{{ dog.owner_id }}</td>
-      <td v-if="dog.photo"><img :src="dog.photo" alt="Dog photo" width="80" /></td>
-      <td v-else>Loading image...</td>
+      <td>
+      <img v-if="dog.photo" :src="dog.photo" alt="Dog photo" width="80" />
+      <span v-else>Loading image...</span>
+      </td>
     </tr>
   </tbody>
 </table>
