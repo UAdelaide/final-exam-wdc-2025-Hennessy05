@@ -70,6 +70,14 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// POST /api/users/logout
+router.post('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.clearCookie('connect.sid'); // default cookie name
+    res.json({ message: 'Logged out' });
+  });
+});
+
 
 
 module.exports = router;
