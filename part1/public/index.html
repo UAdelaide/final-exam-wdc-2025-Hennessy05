@@ -17,7 +17,8 @@
     <h1>Dog of the Day</h1>
     <!-- error caused by validator not being Vue ;
      could not fix -->
-html<br><img alt="Dog of the day" src="data:image/gif;base64,R0…" :src="dogUrl" :alt="`Image of ${dog.name}`" />    <p>Today's random dog is named {{ dog.name }} and it's a {{ dog.breed }}</p>
+    <img v-if="dogUrl" :src="dogUrl" :alt="`Image of ${dog.name}`" />
+    <p>Today's random dog is named {{ dog.name }} and it's a {{ dog.breed }}</p>
   </div>
 
   <script>
