@@ -41,6 +41,8 @@
       <td>{{ dog.size }}</td>
       <td>{{ dog.owner_id }}</td>
       <td>
+      <!-- html-validate sees only raw HTML, so it thinks this <img> has no src attribute;
+     disable the element-required-attributes rule for the next line -->
       <img v-if="dog.photo" :src="dog.photo" alt="Dog photo" width="80" />
       <span v-else>Loading image...</span>
       </td>
