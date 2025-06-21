@@ -62,6 +62,8 @@ router.post('/:id/apply', async (req, res) => {
   } catch (error) {
     console.error('SQL Error:', error);
     res.status(500).json({ error: 'Failed to apply for walk' });
+    console.error('SQL Error:', error);
+    return res.status(500).json({ error: 'Failed to apply for walk' });
   }
 });
 
