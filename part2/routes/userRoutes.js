@@ -15,18 +15,19 @@ router.get('/', async (req, res) => {
 
 // POST a new user (simple signup)
 router.post('/register', async (req, res) => {
-    const username = xss(req.body.username);
-    const email = xss(req.body.email);
-    const password = xss(req.body.password);
-    const role = xss(req.body.role);
+  const username = xss(req.body.username);
+  const email = xss(req.body.email);
+  const password = xss(req.body.password);
+  const role = xss(req.body.role);
 
   try {
-    const [result] = await db.query(`
-      INSERT INTO Users (username, email, password_hash, role)
-      VALUES (?, ?, ?, ?)
-    `, [username, email, password, role]);
-
-    return res.status(201).json({ message: 'User registered', user_id: result.insertId });
+    const [result] = await db.query(
+      `INSERT INTO Users (username, email, password_hash, role) VALUES (?, ?, ?, ?)`,
+      [username, email, password, role]
+    );
+    return res
+      .status(201)
+      .json({ message: 'User registered', user_id: result.insertId });
   } catch (error) {
     return res.status(500).json({ error: 'Registration failed' });
   }
@@ -41,14 +42,14 @@ router.get('/me', (req, res) => {
 
 // POST login (completed version)
 router.post('/login', async (req, res) => {
-    const email = xss(req.body.email);
-    const password = xss(req.body.password);
+  const email = xss(req.body.email);
+  const password = xss(req.body.password);
 
   try {
-    const [rows] = await db.query(`
-      SELECT user_id, username, role FROM Users
-      WHERE email = ? AND password_hash = ?
-    `, [email, password]);
+    const [rows] = await db.query(
+      `SELECT user_id, username, role FROM Users WHERE email = ? AND password_hash = ?`,
+      [email, password]
+    );
 
     if (rows.length === 0) {
       return res.status(401).json({ error: 'Invalid credentials' });
@@ -60,7 +61,6 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.error('Login failed:', error);
     return res.status(500).json({ error: 'Login failed' });
-
   }
 });
 
@@ -70,8 +70,7 @@ router.post('/logout', (req, res) => {
     if (err) {
       return res.status(500).json({ error: 'Failed to log out' });
     }
-    res.clearCookie('connect.sid'); // default session cookie name
-    res.json({ message: 'Logged out' });
+    res.clearCookie('connect.sid');
     return res.json({ message: 'Logged out' });
   });
 });
@@ -89,26 +88,22 @@ router.get('/walks/mine', async (req, res) => {
       'SELECT dog_id, name, size FROM Dogs WHERE owner_id = ?',
       [ownerId]
     );
-    res.json(dogs);
     return res.json(dogs);
   } catch (error) {
     console.error('Error fetching dogs for owner:', error);
-    res.status(500).json({ error: 'Failed to fetch dogs' });
-  }
-});
-// GET all dogs (used on homepage)
-router.get('/dogs', async (req, res) => {
-
-  try {
-    const [rows] = await db.query('SELECT * FROM Dogs');
-    res.json(rows);
-  } catch (error) {
-    console.error('Failed to fetch dogs:', error);
-    res.status(500).json({ error: 'Failed to fetch dogs' });
     return res.status(500).json({ error: 'Failed to fetch dogs' });
   }
 });
 
-
+// GET all dogs (used on homepage)
+router.get('/dogs', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT * FROM Dogs');
+    return res.json(rows);
+  } catch (error) {
+    console.error('Failed to fetch dogs:', error);
+    return res.status(500).json({ error: 'Failed to fetch dogs' });
+  }
+});
 
 module.exports = router;
