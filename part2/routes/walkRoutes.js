@@ -33,8 +33,10 @@ router.post('/', async (req, res) => {
     `, [dog_id, requested_time, duration_minutes, location]);
 
     res.status(201).json({ message: 'Walk request created', request_id: result.insertId });
+    return res.status(201).json({ message: 'Walk request created', request_id: result.insertId });
   } catch (error) {
     res.status(500).json({ error: 'Failed to create walk request' });
+    return res.status(500).json({ error: 'Failed to create walk request' });
   }
 });
 
