@@ -24,7 +24,7 @@ let db;
     await connection.query('CREATE DATABASE IF NOT EXISTS testdb');
     await connection.end();
 
-    // Now connect to the created database
+    // Now connects to the created database
     db = await mysql.createConnection({
       host: '127.0.0.1',
       user: 'root',
