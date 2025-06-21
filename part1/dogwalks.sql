@@ -32,6 +32,11 @@ CREATE TABLE WalkRequests (
     FOREIGN KEY (dog_id) REFERENCES Dogs(dog_id)
 );
 
+ALTER TABLE WalkRequests
+ADD CONSTRAINT unique_walk_request
+UNIQUE (dog_id, requested_time, duration_minutes, location);
+
+
 CREATE TABLE WalkApplications (
     application_id INT AUTO_INCREMENT PRIMARY KEY,
     request_id INT NOT NULL,
