@@ -90,6 +90,7 @@ router.get('/walks/mine', async (req, res) => {
       [ownerId]
     );
     res.json(dogs);
+    return res.json(dogs);
   } catch (error) {
     console.error('Error fetching dogs for owner:', error);
     res.status(500).json({ error: 'Failed to fetch dogs' });
