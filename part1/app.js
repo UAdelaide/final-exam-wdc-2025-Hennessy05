@@ -50,8 +50,8 @@ let db;
       ((SELECT dog_id FROM Dogs WHERE name = 'Daisy'), '2025-06-13 14:00:00', 40, 'Riverside Park', 'open')
     `);
 
-  } catch (err){
-    throw err;
+  } catch (err) {
+    console.error('Error connecting to database or inserting data:', err);
   }
 })();
 
