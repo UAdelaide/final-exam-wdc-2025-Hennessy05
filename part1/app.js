@@ -51,7 +51,7 @@ let db;
     `);
 
   } catch (err)
-)();
+})();
 
 // Route: /api/dogs
 app.get('/api/dogs', async (req, res) => {
