@@ -52,6 +52,7 @@ let db;
 
   } catch (err){
     throw err;
+  }
 })();
 
 // Route: /api/dogs
