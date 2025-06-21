@@ -64,7 +64,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// ✅ POST /api/users/logout - ends session and returns success
+// POST /api/users/logout - ends session and returns success
 router.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
