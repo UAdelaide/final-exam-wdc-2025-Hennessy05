@@ -72,6 +72,7 @@ router.post('/logout', (req, res) => {
     }
     res.clearCookie('connect.sid'); // default session cookie name
     res.json({ message: 'Logged out' });
+    return res.json({ message: 'Logged out' });
   });
 });
 
