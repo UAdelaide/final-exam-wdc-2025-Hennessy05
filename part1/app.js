@@ -50,10 +50,8 @@ let db;
       ((SELECT dog_id FROM Dogs WHERE name = 'Daisy'), '2025-06-13 14:00:00', 40, 'Riverside Park', 'open')
     `);
 
-  } catch (err) {
-    console.error('Error connecting to database or inserting data:', err);
-  }
-})();
+  } catch (err)
+)();
 
 // Route: /api/dogs
 app.get('/api/dogs', async (req, res) => {
