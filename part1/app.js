@@ -51,7 +51,7 @@ let db;
     `);
 
   } catch (err) {
-    console.error('❌ Error connecting to database or inserting data:', err);
+    console.error('Error connecting to database or inserting data:', err);
   }
 })();
 
